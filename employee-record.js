@@ -1,0 +1,4 @@
+export function createEmployeeRecord(input={}){
+ const required=["id","name","payType","taxCode","niCategory"];const missing=required.filter(k=>!input[k]);if(missing.length)return{status:"BLOCKED",missing};
+ return{status:"VALID",employee:{id:String(input.id),name:input.name,pay:{type:input.payType,rate:Number(input.rate||0)},tax:{code:String(input.taxCode).toUpperCase(),basis:input.taxBasis||"CUMULATIVE",previousTaxablePay:Number(input.previousTaxablePay||0),previousTaxPaid:Number(input.previousTaxPaid||0)},ni:{category:input.niCategory},loans:{student:input.studentLoan||"No",postgraduate:Boolean(input.postgraduateLoan)},pension:input.pension||{scheme:"QUALIFYING_EARNINGS",employeeRate:.05,employerRate:.03},ytd:input.ytd||{gross:0,tax:0,employeeNI:0,employerNI:0,studentLoan:0,pensionEmployee:0,pensionEmployer:0}}}
+}
