@@ -1,0 +1,1 @@
+export function auditEvent({actorId,action,entityType,entityId,before=null,after=null,metadata={}}){if(!actorId||!action||!entityType||!entityId)throw Error("Incomplete audit event");return Object.freeze({id:(globalThis.crypto?.randomUUID?.()||String(Date.now())),occurredAt:new Date().toISOString(),actorId,action,entityType,entityId,before,after,metadata})}
