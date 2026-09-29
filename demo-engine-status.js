@@ -1,0 +1,2 @@
+export const ENGINE_STATUS=[
+ ["Employee/YTD record","BUILT"],["Monthly NI Category A","BUILT"],["Student loans 1/2/4/5","BUILT"],["Postgraduate loan","BUILT"],["Qualifying-earnings pension minimum","BUILT"],["Statutory-pay rate foundation","BUILT"],["PAYE BR/D0/D1/NT","PARTIAL"],["PAYE ordinary codes e.g. 1257L","BLOCKED"],["Other NI categories/directors","BLOCKED"],["RTI FPS/EPS XML","BLOCKED"],["HMRC sandbox transmission","WAITING_FOR_CREDENTIALS"],["Production database/auth/security","NOT_STARTED"]];
