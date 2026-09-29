@@ -1,0 +1,6 @@
+// Immutable-style pay-run snapshot builder. Does not imply HMRC submission.
+const clone=o=>JSON.parse(JSON.stringify(o));export function buildPayRunSnapshot({companyId,taxYear,payPeriod,payDate,employees,calculationVersion="2026.27-dev"}){
+ if(!companyId||!taxYear||!payPeriod||!payDate)throw Error("Missing pay-run identity fields");
+ const snapshot={schemaVersion:1,companyId,taxYear,payPeriod,payDate,calculationVersion,status:"DRAFT",createdAt:new Date().toISOString(),employees:clone(employees),totals:{}};
+ snapshot.totals.gross=round(employees.reduce((s,e)=>s+(e.gross||0),0));snapshot.totals.employeeNI=round(employees.reduce((s,e)=>s+(e.employeeNI||0),0));snapshot.totals.employerNI=round(employees.reduce((s,e)=>s+(e.employerNI||0),0));snapshot.totals.employeePension=round(employees.reduce((s,e)=>s+(e.employeePension||0),0));snapshot.totals.employerPension=round(employees.reduce((s,e)=>s+(e.employerPension||0),0));return Object.freeze(snapshot)}
+const round=n=>Math.round((n+Number.EPSILON)*100)/100;
